@@ -6,223 +6,120 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>387</height>
+    <width>584</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ConvFilter</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QGraphicsView" name="originalImageView">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>40</y>
-      <width>51</width>
-      <height>22</height>
+      <x>20</x>
+      <y>20</y>
+      <width>256</width>
+      <height>192</height>
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+   <widget class="QPushButton" name="clearSubimageButton">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>40</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>80</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>80</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>80</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_7">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>120</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>120</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_9">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>120</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>211</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>170</y>
-      <width>211</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="textBrowser">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>160</y>
-      <width>91</width>
-      <height>81</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>160</y>
+      <x>200</x>
+      <y>260</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Clear Filter</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="loadSubimageButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>190</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
+      <x>200</x>
       <y>300</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Load Filter</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="loadImageButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>10</y>
+      <x>20</x>
+      <y>220</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Load Image</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="filterImageButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>10</y>
+      <x>300</x>
+      <y>220</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Apply Filter</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="saveImageButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>300</y>
+      <x>390</x>
+      <y>220</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Save Image</string>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
+   <widget class="QPushButton" name="saveSubimageButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>250</y>
-      <width>171</width>
-      <height>16</height>
+      <x>200</x>
+      <y>340</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
     </property>
-    <property name="value">
-     <number>24</number>
+    <property name="text">
+     <string>Save Filter</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="filteredImageView">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="subimageValuesTextBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>260</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -231,10 +128,27 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>466</width>
+     <width>584</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_Image"/>
+    <addaction name="actionSave_Filtered_Result"/>
+    <addaction name="actionOpen_Existing_Subimage"/>
+    <addaction name="actionSave_Current_Subimage"/>
+   </widget>
+   <widget class="QMenu" name="menuAction">
+    <property name="title">
+     <string>Action</string>
+    </property>
+    <addaction name="actionFilter_Image"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAction"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -245,6 +159,31 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen_Image">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionSave_Filtered_Result">
+   <property name="text">
+    <string>Save Filtered Result</string>
+   </property>
+  </action>
+  <action name="actionOpen_Existing_Subimage">
+   <property name="text">
+    <string>Load Existing Subimage</string>
+   </property>
+  </action>
+  <action name="actionSave_Current_Subimage">
+   <property name="text">
+    <string>Save Current Subimage</string>
+   </property>
+  </action>
+  <action name="actionFilter_Image">
+   <property name="text">
+    <string>Filter Image</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
