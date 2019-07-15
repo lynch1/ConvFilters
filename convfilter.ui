@@ -14,16 +14,6 @@
    <string>ConvFilter</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="originalImageView">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>40</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="openSubimageButton">
     <property name="geometry">
      <rect>
@@ -193,16 +183,6 @@ border: 1px solid gray;
      <string>Save Filter</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="filteredImageView">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>40</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPlainTextEdit" name="subimageValuesTextBox">
     <property name="geometry">
      <rect>
@@ -213,7 +193,7 @@ border: 1px solid gray;
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="originalImageLabel">
+   <widget class="QLabel" name="originalImageLabelText">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -226,7 +206,7 @@ border: 1px solid gray;
      <string>Original Image</string>
     </property>
    </widget>
-   <widget class="QLabel" name="filteredImageLabel">
+   <widget class="QLabel" name="filteredImageLabelText">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -250,6 +230,38 @@ border: 1px solid gray;
     </property>
     <property name="text">
      <string>Choose or Create Filter</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="originalImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>251</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{background-color: rgb(255,255,255);}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteredImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>40</y>
+      <width>251</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{background-color: rgb(255,255,255);}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

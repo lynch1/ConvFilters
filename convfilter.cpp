@@ -11,6 +11,9 @@ ConvFilter::ConvFilter(QWidget *parent) :
     // Signal for when openSubimageButton QPushButton is released
     connect(ui->openSubimageButton, SIGNAL(released()), this, SLOT(openFilter()));
 
+    // Practice displaying an image
+    QPixmap testImage("C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm");
+    ui->originalImageLabel->setPixmap(testImage);
 }
 
 ConvFilter::~ConvFilter()
@@ -24,12 +27,10 @@ void ConvFilter::openFilter()
     QString subimageFilename = QFileDialog::getOpenFileName(this, "Open a subimage");
     // Error handling for opening a sub image file.
 
-    // Use functions from FilterImage module to read filter file
+    // Use functions from FilterImage module to read the filter file.
     // The annoying thing is that my input for the reading functions in the FilterImage
     // class take the <char *> type for the input filename and the Qt getOpenFileName()
-    // function saves the input filename as a QString.
-    // Make a char array that is one char bigger than the filename using QString function
-    // char *filename =  new char[subimageFilename.size() + 1];
+    // function returns the filename as a QString.
     // I got a little stuck so had to use a work around I found on stack overflow:
     // https://stackoverflow.com/questions/17936160/clean-way-to-convert-qstring-to-char-not-const-char
     QByteArray filenameArray = subimageFilename.toLocal8Bit();

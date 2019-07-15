@@ -11,6 +11,7 @@
 #include <QFileDialog>
 // For giving user error messages
 #include <QMessageBox>
+#include <QPixmap>
 
 // Some classes from sobel edge detection program
 // I wrote for a class assignent last spring.
