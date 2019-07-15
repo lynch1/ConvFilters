@@ -33,7 +33,7 @@ public:
     ~ConvFilter();
 
 private slots:
-    void on_openSubimageButton_released();
+    void openFilter();
 
 private:
     // The UI Form

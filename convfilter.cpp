@@ -6,6 +6,11 @@ ConvFilter::ConvFilter(QWidget *parent) :
     ui(new Ui::ConvFilter)
 {
     ui->setupUi(this);
+
+    // Connect signals to slots
+    // Signal for when openSubimageButton QPushButton is released
+    connect(ui->openSubimageButton, SIGNAL(released()), this, SLOT(openFilter()));
+
 }
 
 ConvFilter::~ConvFilter()
@@ -14,7 +19,7 @@ ConvFilter::~ConvFilter()
 }
 
 
-void ConvFilter::on_openSubimageButton_released()
+void ConvFilter::openFilter()
 {
     QString subimageFilename = QFileDialog::getOpenFileName(this, "Open a subimage");
     // Error handling for opening a sub image file.
