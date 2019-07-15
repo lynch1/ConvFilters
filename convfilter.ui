@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
-    <height>425</height>
+    <width>608</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,56 +18,43 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>40</y>
       <width>256</width>
       <height>192</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="clearSubimageButton">
+   <widget class="QPushButton" name="openSubimageButton">
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>260</y>
+      <y>310</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Clear Filter</string>
+     <string>Open a Filter</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="loadSubimageButton">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>300</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Load Filter</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="loadImageButton">
+   <widget class="QPushButton" name="openImageButton">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>220</y>
+      <y>240</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Load Image</string>
+     <string>Open Image</string>
     </property>
    </widget>
    <widget class="QPushButton" name="filterImageButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>220</y>
+      <x>200</x>
+      <y>370</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -79,14 +66,14 @@
    <widget class="QPushButton" name="saveImageButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>220</y>
+      <x>300</x>
+      <y>240</y>
       <width>75</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Save Image</string>
+     <string>Save Result</string>
     </property>
    </widget>
    <widget class="QPushButton" name="saveSubimageButton">
@@ -106,7 +93,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>20</y>
+      <y>40</y>
       <width>256</width>
       <height>192</height>
      </rect>
@@ -116,10 +103,49 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>260</y>
+      <y>310</y>
       <width>161</width>
-      <height>101</height>
+      <height>111</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="originalImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Original Image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filteredImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Filtered Image</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="filterBoxLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Choose or Create Filter</string>
     </property>
    </widget>
   </widget>
@@ -128,7 +154,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>584</width>
+     <width>608</width>
      <height>21</height>
     </rect>
    </property>

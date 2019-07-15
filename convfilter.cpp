@@ -46,9 +46,27 @@ void ConvFilter::on_loadSubimageButton_released()
         QMessageBox::warning(this, "Warning", "Couldn't load filter" + subimageFile.errorString());
         return;
     }
-    // Read in file contents
+    // Make a QTextStream Instance and read in file contents
     QTextStream inFile(&subimageFile);
-    QString filterValues = inFile.readAll();
+    // Changing this so it puts the filter in filtervalues instead of just keeping
+    // it as string information.
+
+    unsigned char placeHolderChar = inFile.read(1);
+    while (inFile.read()){
+
+    QString lineOfStream = inFile.readLine();
+
+    }
+    // Load values into filtervalues[]
+
+
+    // Display the contents of the file in the text display
     ui->subimageValuesTextBox->setPlainText(filterValues);
     subimageFile.close();
+}
+
+void ConvFilter::on_clearSubimageButton_released()
+{
+    // Clear the text field where users can write filters
+
 }

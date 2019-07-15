@@ -25,10 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        FilterImage.cpp \
+        FloatImage.cpp \
         main.cpp \
         convfilter.cpp
 
 HEADERS += \
+        FilterImage.h \
+        FloatImage.h \
         convfilter.h
 
 FORMS += \

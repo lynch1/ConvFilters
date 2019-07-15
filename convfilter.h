@@ -1,6 +1,8 @@
 #ifndef CONVFILTER_H
 #define CONVFILTER_H
 
+#define MAXFILTERSIZE 10
+
 #include <QMainWindow>
 // For opening files
 #include <QFile>
@@ -30,11 +32,13 @@ private slots:
 
     void on_loadSubimageButton_released();
 
+    void on_clearSubimageButton_released();
+
 private:
     // The UI Form
     Ui::ConvFilter *ui;
     QString currentFilter = "";
-    double *filterValues[9];
+    double *filterValues[MAXFILTERSIZE * MAXFILTERSIZE];
 };
 
 #endif//CONVFILTER_H
