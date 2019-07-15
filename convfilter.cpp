@@ -7,13 +7,15 @@ ConvFilter::ConvFilter(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Connect signals to slots
-    // Signal for when openSubimageButton QPushButton is released
-    connect(ui->openSubimageButton, SIGNAL(released()), this, SLOT(openFilter()));
-
     // Practice displaying an image
     QPixmap testImage("C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm");
     ui->originalImageLabel->setPixmap(testImage.scaled(ui->originalImageLabel->width(),ui->originalImageLabel->height(),Qt::KeepAspectRatio));
+
+    // Connect signals to slots
+    // Signal for when openSubimageButton QPushButton is released
+    connect(ui->openSubimageButton, SIGNAL(released()), this, SLOT(openFilter()));
+    // Signal for when openImageButton QPushButton is released
+    connect(ui->openImageButton, SIGNAL(released()), this, SLOT(openImage()));
 }
 
 ConvFilter::~ConvFilter()
@@ -65,17 +67,20 @@ void ConvFilter::openFilter()
     }
     // Display the contents of the string in the text display on the UI
     ui->subimageValuesTextBox->setPlainText(valuesFromFilter);
+    subimageFile.close();
 }
 
 // Function / Slot to open up a new image, display it, and then created a FloatImage Object of it
 void ConvFilter::openImage(){
+
     // Get filename from getOpenFileName() as a QString and convert it to a char array
     QString openImageFilename = QFileDialog::getOpenFileName(this, "Open a subimage");
     QByteArray filenameArray = openImageFilename.toLocal8Bit();
     char* filename = filenameArray.data();
     // Open a QFile filestream
-    QFile subimageFile(openImageFilename);
+    QFile openImageFile(openImageFilename);
 
+    // Read PGM header and set originalImage based on this info
     // Initialize some variables for saving header info
     unsigned int imageRows = 0;
     unsigned int imageCols = 0;
@@ -83,17 +88,16 @@ void ConvFilter::openImage(){
     // read the header on the filter file to get the dimensions
     // Images are expected to be in the PGM format, i.e. "P5"
     readPGMHeader(filename, imageRows, imageCols, imageLevels);
-
-
-    // Create an instance of a FloatImage of the right size
-    FloatImage openedImage(imageRows, imageCols, imageLevels);
-
+    // Use setSize() to put .pgm file contents into origImage.
+    // Don't forget to free any memory from an older values[]
+    origFloatImage.setSize(imageRows, imageCols, imageLevels);
     // Read the values into the FloatImage instance
-    openedImage.readInPGMImage(filename);
+    origFloatImage.readInPGMImage(filename);
 
-    // Update the filtervalues member usint the FilterImage function getValues()
-    // Need to add a member to convfilter to hold the FloatImage object.
-    //
-    // filterValues = *openedFilter.getValues();
-    // origFloatImage = *openedImage();
+    // Now display the .pgm image in the left label area
+    // Practice displaying an image
+    QPixmap originalImagePGM(filename);
+    ui->originalImageLabel->setPixmap(originalImagePGM.scaled(ui->originalImageLabel->width(),ui->originalImageLabel->height(),Qt::KeepAspectRatio));
+
+    openImageFile.close();
 }
