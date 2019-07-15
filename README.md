@@ -50,6 +50,14 @@ Derek Banas' YouTube Channel:
 https://www.youtube.com/channel/UCwRXb5dUK4cvsHbx-rGzSgw
 (You should check it out and subscribe).
 
+#### From Yogesh Patel's Youtube Video For Displaying Images as QLabels:
+https://www.youtube.com/watch?v=SyzxerD2Yps
+Mr. Patel's YouTube Channel "Programming Knowledge":
+http://www.codebind.com/about/
+Mr. Patel's Website:
+https://www.youtube.com/user/ProgrammingKnowledge/featured
+
+
 ### Setting up Github and Qt Creator:
 From Qt Documentation:
 https://doc.qt.io/qtcreator/creator-vcs-git.html
