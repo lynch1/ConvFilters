@@ -59,7 +59,7 @@ FloatImage::FloatImage()
 	rows = 0;
 	cols = 0;
 	levels = 0;
-	values = NULL;
+    values = nullptr;
 }
 
 // This constructor loads an image according to the sizes specified in the 
@@ -102,21 +102,40 @@ FloatImage::~FloatImage(void)
 /*-------------------------------------------------------------------------*/
 
 // For caller to get value of Float Image instance's width
-unsigned int const FloatImage::getHeight()
+unsigned int FloatImage::getHeight()
 {
 	return rows;
 }
 
 // For caller to get value of Float Image instance's height
-unsigned int const FloatImage::getWidth()
+unsigned int FloatImage::getWidth()
 {
 	return cols;
 }
 
 // For caller to get value of Float Image instance's maximum level of intensity
-unsigned int const FloatImage::getLevels()
+unsigned int FloatImage::getLevels()
 {
 	return levels;
+}
+
+void FloatImage::setSize(unsigned int &headerRows, unsigned int &headerCols, unsigned int &headerLevels){
+    // Set the size info from the input arguments
+    rows = headerRows;
+    cols = headerCols;
+    levels = headerLevels;
+
+    // Load 2D array with fill values
+    values = new float *[rows];
+    for (unsigned int i  = 0; i < rows; i++)
+    {
+        values[i] = new float [cols];
+        for (unsigned int j = 0; j < cols; j ++)
+        {
+            values[i][j] = 0.0;
+        }
+    }
+
 }
 
 void FloatImage::readInPGMImage(char *fileName)
@@ -225,7 +244,6 @@ void FloatImage::copyAndPadImage(const FloatImage &refImage, unsigned int pad)
 
 }
 
-
 // Apply a threshold to the image in a look-up table
 // It assumes the image in the FloatImage instance has already been normalized
 void FloatImage::applyLookUp(float *lookupTable, unsigned int tableSize)
@@ -262,6 +280,7 @@ void FloatImage::applyLookUp(float *lookupTable, unsigned int tableSize)
 		exit(EXIT_FAILURE);
 	}
 }
+
 
 void FloatImage::normalizeImage()
 {
@@ -303,6 +322,7 @@ void FloatImage::normalizeImage()
 		// cout << endl;
 	}
 }
+
 
 // This function applies the filter to the float image by sliding it over every pixel 
 // and summing the product of each overlapping pixel, i.e. discrete 2D convolution 
@@ -423,6 +443,7 @@ void FloatImage::writePGM(char *fileName)
 	}
 }
 
+
 // This function is to take another FloatImage Instance compare it to this
 // instance and return a score between 0 and 100 that represents the
 // percentage of pixels at the same indices that are the same intensity. 
@@ -459,6 +480,7 @@ float FloatImage::compareImage(const FloatImage &refImage)
 /*----- F U N C T I O N S   F O R   P G M   F I L E   I / O ---------------*/
 /*-------------------------------------------------------------------------*/
 
+
 // Read First line of PGM file for info about size of image 
 void readPGMHeader(char *fileName, unsigned int &rows, unsigned int &cols, unsigned int &levels)
 {
@@ -466,9 +488,9 @@ void readPGMHeader(char *fileName, unsigned int &rows, unsigned int &cols, unsig
 	// Number or arguments we need to get from the PGM file defined in the 
   	// PGM specification
   	unsigned int headerArgCount = 0;
-  	bool magicNumberFlag = false;
-  	//char magicNumber[MAXSTRINGSIZE];
-  	int headerArgs[NUMBERHEADERARGS - 1]; 
+    bool magicNumberFlag = false;
+    // I changed this from int to unsigned int on 7-15-2019
+    unsigned int headerArgs[NUMBERHEADERARGS - 1];
 
   	// Start a stream of the PGM file to read
   	ifstream inFile(fileName);

@@ -45,9 +45,11 @@ class FloatImage
 		// Destructor
 		~FloatImage();
 
-		unsigned int const getWidth();
-		unsigned int const getHeight();
-		unsigned int const getLevels();
+        unsigned int getWidth();
+        unsigned int getHeight();
+        unsigned int getLevels();
+
+        void setSize(unsigned int &headerRows, unsigned int &headerCols, unsigned int &headerLevels);
 
 		//Functions
 		void readInPGMImage(char *fileName);

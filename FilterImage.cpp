@@ -40,7 +40,7 @@ FilterImage::FilterImage()
 {
 	size = 0;
 	reqPad = 0;
-	values = NULL;
+    values = nullptr;
 }
 
 // Initializing constructor
@@ -88,11 +88,11 @@ FilterImage::~FilterImage(void)
 	cout << "Deleting FilterImage object instance to free memory!\n" << endl;
 }
 
-unsigned int const FilterImage::getSize()
+unsigned int FilterImage::getSize()
 {
 	return size;
 }
-unsigned int const FilterImage::getReqPad()
+unsigned int FilterImage::getReqPad()
 {
 	return reqPad;
 }
@@ -124,7 +124,7 @@ void FilterImage::readFilterImage(char *fileName)
 		{
 			// Since it is the right type of file
 			inFile >> infoBuffer;
-			dimSize = (unsigned int) stoi(infoBuffer);
+            dimSize = static_cast<unsigned int>(stoi(infoBuffer));
 			// If the dimensions don't match for some reason
 			if (dimSize != size)
 			{
@@ -140,7 +140,7 @@ void FilterImage::readFilterImage(char *fileName)
 				for (unsigned int x = 0; x < size; x ++)
 				{
 					inFile >> infoBuffer;
-					tempFloat = strtof(infoBuffer, NULL);
+                    tempFloat = strtof(infoBuffer, nullptr);
 					values[y][x] = tempFloat;
 				}
 			}
@@ -208,7 +208,7 @@ void readFilterHeader(char *fileName, unsigned int &size)
 			// It can be expected that it is adhering to specifictation
 			inFile >> infoBuffer;
 			filterDim = atoi(infoBuffer);
-			size = (unsigned int) filterDim;
+            size = static_cast<unsigned int>(filterDim);
 		}
 		else
 		{

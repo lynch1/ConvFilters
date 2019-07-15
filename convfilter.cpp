@@ -13,7 +13,7 @@ ConvFilter::ConvFilter(QWidget *parent) :
 
     // Practice displaying an image
     QPixmap testImage("C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm");
-    ui->originalImageLabel->setPixmap(testImage);
+    ui->originalImageLabel->setPixmap(testImage.scaled(ui->originalImageLabel->width(),ui->originalImageLabel->height(),Qt::KeepAspectRatio));
 }
 
 ConvFilter::~ConvFilter()
@@ -21,7 +21,8 @@ ConvFilter::~ConvFilter()
     delete ui;
 }
 
-
+// Open an already existing text file that describes a filter
+// Format needs to be specified either as popup message, in help, or both
 void ConvFilter::openFilter()
 {
     QString subimageFilename = QFileDialog::getOpenFileName(this, "Open a subimage");
@@ -48,7 +49,7 @@ void ConvFilter::openFilter()
 
     // Read the values into the FilterImage instance
     openedFilter.readFilterImage(filename);
-    // Update the filtervalues member
+    // Update the filtervalues member usint the FilterImage function getValues()
     filterValues = *openedFilter.getValues();
 
     // Display the filter values in the text area
@@ -64,4 +65,35 @@ void ConvFilter::openFilter()
     }
     // Display the contents of the string in the text display on the UI
     ui->subimageValuesTextBox->setPlainText(valuesFromFilter);
+}
+
+// Function / Slot to open up a new image, display it, and then created a FloatImage Object of it
+void ConvFilter::openImage(){
+    // Get filename from getOpenFileName() as a QString and convert it to a char array
+    QString openImageFilename = QFileDialog::getOpenFileName(this, "Open a subimage");
+    QByteArray filenameArray = openImageFilename.toLocal8Bit();
+    char* filename = filenameArray.data();
+    // Open a QFile filestream
+    QFile subimageFile(openImageFilename);
+
+    // Initialize some variables for saving header info
+    unsigned int imageRows = 0;
+    unsigned int imageCols = 0;
+    unsigned int imageLevels = 0;
+    // read the header on the filter file to get the dimensions
+    // Images are expected to be in the PGM format, i.e. "P5"
+    readPGMHeader(filename, imageRows, imageCols, imageLevels);
+
+
+    // Create an instance of a FloatImage of the right size
+    FloatImage openedImage(imageRows, imageCols, imageLevels);
+
+    // Read the values into the FloatImage instance
+    openedImage.readInPGMImage(filename);
+
+    // Update the filtervalues member usint the FilterImage function getValues()
+    // Need to add a member to convfilter to hold the FloatImage object.
+    //
+    // filterValues = *openedFilter.getValues();
+    // origFloatImage = *openedImage();
 }

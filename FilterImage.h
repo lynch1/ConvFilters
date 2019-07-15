@@ -37,9 +37,9 @@ class FilterImage
 		// Destructor
 		~FilterImage();
 
-		unsigned int const getSize();
+        unsigned int getSize();
 
-		unsigned int const getReqPad();
+        unsigned int getReqPad();
 
 		float **getValues();
 
