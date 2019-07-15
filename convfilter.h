@@ -12,6 +12,11 @@
 // For giving user error messages
 #include <QMessageBox>
 
+// Some classes from sobel edge detection program
+// I wrote for a class assignent last spring.
+#include "FilterImage.h"
+#include "FloatImage.h"
+
 namespace Ui {
 class ConvFilter;
 }
@@ -28,17 +33,17 @@ public:
     ~ConvFilter();
 
 private slots:
-    void on_saveSubimageButton_released();
-
-    void on_loadSubimageButton_released();
-
-    void on_clearSubimageButton_released();
+    void on_openSubimageButton_released();
 
 private:
     // The UI Form
     Ui::ConvFilter *ui;
     QString currentFilter = "";
-    double *filterValues[MAXFILTERSIZE * MAXFILTERSIZE];
+    // Might not need
+    float *filterValues;
+    FilterImage workingFilter;
+    FloatImage origFloatImage;
+    FloatImage filtFloatImage;
 };
 
 #endif//CONVFILTER_H
