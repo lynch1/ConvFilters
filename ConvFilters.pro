@@ -42,3 +42,13 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    ExampleFilters/avgfilter.txt \
+    ExampleFilters/sobel_H.txt \
+    ExampleFilters/sobel_V.txt \
+    ExampleFilters/verticalsobel.txt \
+    ExamplePhotos/addams-family.pgm \
+    ExamplePhotos/liver1.pgm \
+    ExamplePhotos/noise_blur_10.pgm \
+    ExamplePhotos/vessel.pgm
