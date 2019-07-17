@@ -36,6 +36,7 @@ public:
 private slots:
     void openFilter();
     void openImage();
+    void filterImage();
 
 private:
     // The UI Form

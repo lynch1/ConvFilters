@@ -101,3 +101,20 @@ void ConvFilter::openImage(){
 
     openImageFile.close();
 }
+
+// Filter the opened image with the selected filter
+void ConvFilter::filterImage()
+{
+    // Get original image sizes and required padding
+    unsigned int w = origFloatImage.getWidth();
+    unsigned int h = origFloatImage.getHeight();
+    unsigned int l = origFloatImage.getLevels();
+    unsigned int p = workingFilter.getReqPad();
+
+    FloatImage paddedImage((h + 2 * p),(w + 2 * p), l );
+    FloatImage workingImage((h + 2 * p),(w + 2 * p), l );
+    paddedImage.copyAndPadImage(origFloatImage, p);
+    workingImage.applyFilter(paddedImage, 8, p, workingFilter.getValues());
+
+
+}

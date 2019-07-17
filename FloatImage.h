@@ -54,7 +54,7 @@ class FloatImage
 		//Functions
 		void readInPGMImage(char *fileName);
 		void writePGM(char *fileName);
-		void copyAndPadImage(const FloatImage &originalImage, unsigned int pad);
+        void copyAndPadImage(const FloatImage &originalImage, unsigned int pad);
 		void applyLookUp(float *lookupTable, unsigned int tableSize);
 		void normalizeImage();
 		void addNoise(unsigned int noiseFactor);
