@@ -14,6 +14,7 @@ You can use Qt's documentation to walk you through this: https://doc.qt.io/qtcre
 
 ## Diagrams
 https://www.lucidchart.com/documents/view/0fd295e4-220e-44d5-8802-a0cc2309d5dc/0
+<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://www.lucidchart.com/documents/embeddedchart/0fd295e4-220e-44d5-8802-a0cc2309d5dc" id="5kGB~vcpO0lX"></iframe></div>
 
 ## TBD
 Project set up step-by-step and examples are TBD. 
