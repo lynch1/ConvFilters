@@ -12,6 +12,9 @@ Clone the repository if you want to take a look at the project.
 To work on this project you will need to install Qt and Qt Creator 4.9.1.
 You can use Qt's documentation to walk you through this: https://doc.qt.io/qtcreator/creator-configuring.html.
 
+## Diagrams
+https://www.lucidchart.com/documents/view/0fd295e4-220e-44d5-8802-a0cc2309d5dc/0
+
 ## TBD
 Project set up step-by-step and examples are TBD. 
 
