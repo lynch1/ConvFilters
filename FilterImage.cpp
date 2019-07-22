@@ -177,6 +177,15 @@ void FilterImage::printFilterImage()
 	cout << endl;
 }
 
+
+void copyFilterImage(const FilterImage &origFilterImage)
+{
+    // Delete old array of floats in this FilterImage if there are some
+
+    // Make a copy
+}
+
+
 /*-------------------------------------------------------------------------*/
 /*------- S O M E   F U N C T I O N   P R O T O T Y P E S  F O R ----------*/
 /*------------- F I L T E R    I M A G E    F U N C T I O N S -------------*/

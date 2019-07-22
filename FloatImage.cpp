@@ -326,6 +326,7 @@ void FloatImage::normalizeImage()
 
 // This function applies the filter to the float image by sliding it over every pixel 
 // and summing the product of each overlapping pixel, i.e. discrete 2D convolution 
+// size parameter refers to the size of the filter.
 void FloatImage::applyFilter(const FloatImage &paddedImage, const unsigned int &size, const unsigned int &pad, float **filterVals)
 {
 	float tempFloat = 0;

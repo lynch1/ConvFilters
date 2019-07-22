@@ -47,6 +47,7 @@ class FilterImage
 
 		void printFilterImage();
 
+        void copyFilterImage(const FilterImage &origFilterImage);
 	private:
 		// Number of rows
 		unsigned int size;
@@ -56,6 +57,8 @@ class FilterImage
 		float **values;
 
 };
+
+
 
 /*-------------------------------------------------------------------------*/
 /*------- S O M E   F U N C T I O N   P R O T O T Y P E S  F O R ----------*/

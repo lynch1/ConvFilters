@@ -16,6 +16,8 @@ ConvFilter::ConvFilter(QWidget *parent) :
     connect(ui->openSubimageButton, SIGNAL(released()), this, SLOT(openFilter()));
     // Signal for when openImageButton QPushButton is released
     connect(ui->openImageButton, SIGNAL(released()), this, SLOT(openImage()));
+    // Signal for when openImageButton QPushButton is released
+    connect(ui->filterImageButton, SIGNAL(released()), this, SLOT(filterImage()));
 }
 
 ConvFilter::~ConvFilter()
@@ -52,7 +54,8 @@ void ConvFilter::openFilter()
     // Read the values into the FilterImage instance
     openedFilter.readFilterImage(filename);
     // Update the filtervalues member usint the FilterImage function getValues()
-    filterValues = *openedFilter.getValues();
+    // Problem lies here.
+    = *openedFilter.getValues();
 
     // Display the filter values in the text area
     // First convert the array of floats into a text formatted string
@@ -114,7 +117,23 @@ void ConvFilter::filterImage()
     FloatImage paddedImage((h + 2 * p),(w + 2 * p), l );
     FloatImage workingImage((h + 2 * p),(w + 2 * p), l );
     paddedImage.copyAndPadImage(origFloatImage, p);
-    workingImage.applyFilter(paddedImage, 8, p, workingFilter.getValues());
+    workingImage.applyFilter(paddedImage, workingFilter.getSize(), p, workingFilter.getValues());
 
+
+    // Save a temporary copy of the filtered image
+    QString tempFilename ="workingImage.pgm";
+    // Needed to convert QString to char* in order to use FloatImage modules writePGM function.
+    QByteArray tempFilenameArray = tempFilename.toLocal8Bit();
+    char* tempImageFilename = tempFilenameArray.data();
+    // Write PGM. writePGM handles file i/o from here.
+    workingImage.writePGM(tempImageFilename);
+
+//    //Display the filtered image
+//    // Now display the .pgm image in the right label area
+//    QFile openTempFile(tempFilename);
+//    QPixmap tempImagePGM(tempFilename);
+//    ui->filteredImageLabel->setPixmap(tempImagePGM.scaled(ui->filteredImageLabel->width(),ui->filteredImageLabel->height(),Qt::KeepAspectRatio));
+
+//   openTempFile.close();
 
 }
