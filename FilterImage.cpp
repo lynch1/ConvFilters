@@ -80,9 +80,9 @@ FilterImage::~FilterImage(void)
 
 	for (unsigned int i = 0; i < size; i++)
 	{
-		delete values[i];
+        delete[] values[i];
 	}
-	delete values;
+    delete[] values;
 
 	// Print message so we know the instance was deleted
 	cout << "Deleting FilterImage object instance to free memory!\n" << endl;
@@ -159,6 +159,35 @@ void FilterImage::readFilterImage(char *fileName)
 	}
 }
 
+// Resets size and reqPad to zero, clears **values[][] if nec.
+void FilterImage::resetFilter(unsigned int s){
+    //Free up values
+    // I think it makes sense to delete values[][] itself and
+    // make a new values[][] so that its a contiguous block
+    if (values != nullptr){
+        for (unsigned int i = 0; i < size; i++){
+            delete values[i];
+        }
+        delete values;
+        values = nullptr;
+    }
+
+    //
+    size = s;
+    reqPad = s % 2;
+    // Initialize the values array with zeros
+    values = new float *[size];
+    for (unsigned int y  = 0; y < size; y++)
+    {
+        values[y] = new float [size];
+        for (unsigned int x = 0; x < size; x ++)
+        {
+            values[y][x] = 0.0;
+        }
+    }
+
+}
+
 // This is mostly for debugging
 // It's a simple print function.
 void FilterImage::printFilterImage()
@@ -176,15 +205,6 @@ void FilterImage::printFilterImage()
 	}
 	cout << endl;
 }
-
-
-void copyFilterImage(const FilterImage &origFilterImage)
-{
-    // Delete old array of floats in this FilterImage if there are some
-
-    // Make a copy
-}
-
 
 /*-------------------------------------------------------------------------*/
 /*------- S O M E   F U N C T I O N   P R O T O T Y P E S  F O R ----------*/

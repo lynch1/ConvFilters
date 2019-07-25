@@ -41,12 +41,13 @@ private slots:
 private:
     // The UI Form
     Ui::ConvFilter *ui;
-    QString currentFilter = "";
+    // Files to handle
+    QString currentFilterFilename;
+    QString originalImageFilename;
     // Might not need
+    bool filterSelected;
     float *filterValues;
-    FilterImage workingFilter;
-    FloatImage origFloatImage;
-    FloatImage filtFloatImage;
+    FilterImage currentFilter;
 };
 
 #endif//CONVFILTER_H

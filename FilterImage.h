@@ -47,7 +47,8 @@ class FilterImage
 
 		void printFilterImage();
 
-        void copyFilterImage(const FilterImage &origFilterImage);
+        void resetFilter(unsigned int s);
+
 	private:
 		// Number of rows
 		unsigned int size;
