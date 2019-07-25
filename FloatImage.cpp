@@ -414,8 +414,6 @@ void FloatImage::writePGM(char *fileName)
 		}
 		unsigned int dataSize  = imageSize * pixelSize;
 
-		// Should I add a normalize here or do it in caller?
-
 		// Load intensities into placeholder array
 
 		unsigned char *placeHolder;
@@ -564,6 +562,7 @@ void readPGMHeader(char *fileName, unsigned int &rows, unsigned int &cols, unsig
 	
 	// Return the useful header information.
 	rows = headerArgs[0];
+    cout << "rows:" << rows <<endl;
 	cols = headerArgs[1];
 	levels = headerArgs[2];
 

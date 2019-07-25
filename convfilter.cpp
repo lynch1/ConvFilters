@@ -7,14 +7,15 @@ ConvFilter::ConvFilter(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Practice displaying an image
-    QPixmap testImage("C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm");
-    ui->originalImageLabel->setPixmap(testImage.scaled(ui->originalImageLabel->width(),ui->originalImageLabel->height(),Qt::KeepAspectRatio));
+    //    // Practice displaying an image
+    //    QPixmap testImage("C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm");
+    //    ui->originalImageLabel->setPixmap(testImage.scaled(ui->originalImageLabel->width(),ui->originalImageLabel->height(),Qt::KeepAspectRatio));
 
     // Set initial original image
     originalImageFilename = "C:/Users/Damn/Documents/ConvFilters/ExamplePhotos/liver1.pgm";
     // Set filterSelected() to no
     filterSelected = false;
+    imageSelected = false;
 
     // Connect signals to slots
     // Signal for when openSubimageButton QPushButton is released
@@ -56,12 +57,20 @@ void ConvFilter::openFilter(){
     // Read the values into the currentFilter FilterImage instance
     currentFilter.readFilterImage(filterFilename);
 
-    // Open Qfile stream object
-    QFile filterFile(currentFilterFilename);
-    filterFile.open(QIODevice::ReadOnly);
-    QTextStream inStream(&filterFile);
-    QString filterFileContent = inStream.readAll();
-    filterFile.close();
+    // Copy the values of filter to filtervalues
+    filterValues = currentFilter.getValues();
+
+    // Display filter
+    QString filterFileContent = "";
+    float tempFloat = 0;
+    for(unsigned int i = 0; i < currentFilter.getSize(); i ++){
+        for(unsigned int j = 0; j < currentFilter.getSize(); j++){
+            tempFloat = filterValues[i][j];
+            filterFileContent.append(QString::number(tempFloat));
+            filterFileContent.append(" ");
+            }
+        filterFileContent.append("\n");
+    }
     // Display the contents of the string in the text display on the UI
     ui->subimageValuesTextBox->setPlainText(filterFileContent);
 
@@ -82,15 +91,12 @@ void ConvFilter::openImage(){
     ui->originalImageLabel->setPixmap(originalImagePGM.scaled
         (ui->originalImageLabel->width(),ui->originalImageLabel->height(),
         Qt::KeepAspectRatio));
+
+    imageSelected = true;
 }
 
 // Filter the opened image with the selected filter
 void ConvFilter::filterImage(){
-    // Get original image sizes and required padding
-    unsigned int r;
-    unsigned int c;
-    unsigned int levs;
-    unsigned int p;
 
     // Needed to convert QString to char* in order to use FloatImage modules writePGM function.
     QByteArray origFilenameArray = originalImageFilename.toLocal8Bit();
@@ -99,26 +105,61 @@ void ConvFilter::filterImage(){
     // Check if there is a filter loaded into
     if (filterSelected == false){
         // If not tell user to choose a filter
+        qDebug("You didn't choose a filter.");
     }
+    else if (imageSelected == false){
+        // If not tell user to choose an image
+        qDebug("You didn't choose an image.");
+    }
+    else{
     // Get header info
-
-
-
-    // Save a temporary copy of the filtered image
-    QString tempFilename ="workingImage.pgm";
-    // Needed to convert QString to char* in order to use FloatImage modules writePGM function.
-    QByteArray tempFilenameArray = tempFilename.toLocal8Bit();
-    char* tempImageFilename = tempFilenameArray.data();
-    // Write PGM. writePGM handles file i/o from here.
-
     // STOPPED HERE
+    // Get original image sizes and required padding
+    unsigned int r;
+    unsigned int c;
+    unsigned int levs;
+    unsigned int p;
 
-//    //Display the filtered image
-//    // Now display the .pgm image in the right label area
-//    QFile openTempFile(tempFilename);
-//    QPixmap tempImagePGM(tempFilename);
-//    ui->filteredImageLabel->setPixmap(tempImagePGM.scaled(ui->filteredImageLabel->width(),ui->filteredImageLabel->height(),Qt::KeepAspectRatio));
+    readPGMHeader(origImageFilename, r, c, levs);
+    p = currentFilter.getReqPad();
 
-//   openTempFile.close();
+    // Read in original image as a float image
+    FloatImage originalImage(r, c, levs);
+    // In debugging r, c, and levs are zero here. p is 1.
+    originalImage.readInPGMImage(origImageFilename);
 
+    // Make an appropriately sized padded image
+    FloatImage paddedImage((r + (p*2)), (c + (p*2)), levs);
+    paddedImage.copyAndPadImage(originalImage, p);
+
+    FloatImage filteredImage(r, c, levs);
+
+    // Filter the image and normalize
+    filteredImage.applyFilter(paddedImage, currentFilter.getSize(), p, filterValues);
+    filteredImage.normalizeImage();
+
+    // Write image aas temporary file
+    QByteArray tempFilenameArray = tempFilteredImageFilename.toLocal8Bit();
+    char* tempImageFilename = tempFilenameArray.data();
+    originalImage.writePGM(tempImageFilename);
+
+    // Display filtered image
+    QPixmap displayedImage(tempFilteredImageFilename);
+    ui->filteredImageLabel->setPixmap(displayedImage.scaled
+        (ui->filteredImageLabel->width(),ui->filteredImageLabel->height(),
+        Qt::KeepAspectRatio));
+    }
 }
+
+
+//void saveFilter(){
+//    QFile tempFilterFile(tempFilterFilename);
+//    if (tempFilterFile.open(QFile::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+//        QTextStream outStream(&tempFilterFile);
+//        outStream << "FS\n" << currentFilter.getSize() << "\n";
+//        for(unsigned int i = 0; i < currentFilter.getSize(); i ++){
+//            for(unsigned int j = 0; j < currentFilter.getSize(); j++){
+//                outStream << filterValues[i][j] << " ";
+//                }
+//        outStream << "\n";
+//    }

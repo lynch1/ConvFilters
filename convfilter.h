@@ -9,9 +9,8 @@
 #include <QString>
 #include <QTextStream>
 #include <QFileDialog>
-// For giving user error messages
-#include <QMessageBox>
 #include <QPixmap>
+#include <QErrorMessage>
 
 // Some classes from sobel edge detection program
 // I wrote for a class assignent last spring.
@@ -44,9 +43,13 @@ private:
     // Files to handle
     QString currentFilterFilename;
     QString originalImageFilename;
-    // Might not need
+    QString tempFilterFilename = "current_filter.txt";
+    QString tempFilteredImageFilename = "last_filtered_image.pgm";
+
     bool filterSelected;
-    float *filterValues;
+    bool imageSelected;
+
+    float **filterValues;
     FilterImage currentFilter;
 };
 
